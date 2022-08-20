@@ -1,0 +1,36 @@
+*{
+    font-family: helvetica, sans-serif;
+}
+
+.scores a{
+    text-decoration: none;
+}
+
+.time{
+    text-align: right;
+}
+
+.start-screen{
+    text-align: center;
+}
+
+#starting-point{
+
+}
+
+button{
+    cursor:pointer;
+    font-size: 100%;
+    background-color: rgb(106, 189, 238);
+    padding:5px 10px;
+    border: 0;
+    transition: background-color 0.1s;
+}
+
+button:hover{
+    background-color: rgb(70, 136, 173) ;
+}
+
+.hide{
+    display: none;
+}
