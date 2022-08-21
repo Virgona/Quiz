@@ -14,10 +14,6 @@
     text-align: center;
 }
 
-#starting-point{
-
-}
-
 button{
     cursor:pointer;
     font-size: 100%;
@@ -33,4 +29,12 @@ button:hover{
 
 .hide{
     display: none;
+}
+
+#end-screen{
+    text-align: center;
+}
+
+#end-screen input{
+    margin-top: 10px;
 }
