@@ -10,7 +10,7 @@
 <body>
     <div class="scores"><a href='#'>View Highscores</a></div>
 
-    <div class= "time">Time:</div>
+    <div class ='time'>Time:<span id= "time"></span></div>
 
     <div class="start-screen" id="starting-point">
         <h1>Coding Quiz Challenge!</h1>
@@ -18,15 +18,15 @@
             <br>beware, you will be penalised by 15 seconds for wrong answers and when the timer hits 0
             you will be a certified loser
         </p>
-        <button>Start Quiz</button>
+        <button id="start-btn">Start Quiz</button>
     </div>
 
     <div id="questions" class="hide">
         <h2 id="questions-title"></h2>
-        <div id="'choices" class=""choices></div>
+        <div id="answers" class="answers"></div>
     </div>
 
-    <div id="end-screen" class="">
+    <div id="end-screen" class="hide">
         <h2>Congratulations!</h2>
         <p>
             please register your high score<br>

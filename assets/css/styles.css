@@ -7,7 +7,9 @@
 }
 
 .time{
+    position:relative;
     text-align: right;
+    bottom: 15px;
 }
 
 .start-screen{
@@ -31,6 +33,18 @@ button:hover{
     display: none;
 }
 
+.answers{
+  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+#questions-title{
+    text-align: center;
+}
 #end-screen{
     text-align: center;
 }
