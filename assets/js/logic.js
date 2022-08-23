@@ -5,6 +5,7 @@ var quizQuestions = document.querySelector('#questions');
 var timer = document.querySelector('#time');
 var answers = document.querySelector('#answers');
 var responses = document.querySelector('#response');
+var quizEndScreen = document.querySelector('#end-screen');
 
 function startQuiz() {
     //initiates the quiz by hiding the starting elements
@@ -13,7 +14,7 @@ function startQuiz() {
     // reveals the previously hidden questions section of HTML
     quizQuestions.removeAttribute('class');
     // starts the timer
-    var countdown = setInterval(function(){
+    var countdown = setInterval(function () {
         timeLeft--;
         timer.textContent = timeLeft;
     }, 1000);
@@ -21,7 +22,7 @@ function startQuiz() {
     nextQuestion();
 }
 
-function nextQuestion(){
+function nextQuestion() {
     // the starting point for the quiz. Tells JS to start at question 0 and logs it to a variable
     var currentQuestion = questions[currentQuestionIndex];
     // grabs the area in the html for the question to display and then displays it on screen
@@ -31,11 +32,12 @@ function nextQuestion(){
     answers.innerHTML = '';
 
     // loops over the choices from the questions JS page and creates a button for every choice
-    for (var i = 0; i< currentQuestion.choices.length; i++) {
+    for (var i = 0; i < currentQuestion.choices.length; i++) {
         var answer = currentQuestion.choices[i];
         var answerBtn = document.createElement('button');
         answerBtn.setAttribute('class', 'choice');
         answerBtn.setAttribute('value', answer);
+        answerBtn.addEventListener('click', selectingAnswer);
 
         answerBtn.textContent = i + 1 + '. ' + answer;
         // adds the answer buttons to the variable which loads it to the page 
@@ -44,44 +46,48 @@ function nextQuestion(){
 
 }
 
-function slectingAnswer(event) {
-    var selectedAnswer = event.target;
-    selectedAnswer.addEventListener('click', function(){
+function selectingAnswer(event) {
 
-        if (!selectedAnswer.matches('.answers')) {
-            return;
+    var selectedAnswer = event.target.value;
+
+
+    if (selectedAnswer.value !== questions[currentQuestionIndex].answer) {
+        timeLeft -= 15;
+
+        if (timeLeft < 0) {
+            timeLeft = 0;
         }
 
-        if (selectedAnswer.value !== questions[currentQuestionIndex].answer) {
-            timeLeft-= 15;
+        timer.textContent = timeLeft;
 
-            if (timeLeft < 0){
-                timeLeft = 0;
-            }
+        responses.textContent = 'incorrect!';
 
-            timer.textContent = timeLeft;
+    } else {
+        responses.textContent = 'Correct!'
+    }
 
-            responses.textContent = 'incorrect!';
-        } else {
-            responses.textContent = 'Correct!'
-        }
+    responses.setAttribute('class', 'responses');
+    setTimeout(function () {
+        responses.setAttribute('class', 'hide-response');
+    }, 1000);
 
-        responses.setAttribute('class', 'responses');
-        setTimeout(function() {
-            responses.setAttribute('class', 'hide-response');
-        }, 1000);
-        
-        currentQuestionIndex++;
+    currentQuestionIndex++;
 
-        if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
-            endQuiz();
-        } else {
-            nextQuestion();
-        }
-        console.log(selectedAnswer);
-    });        
+    if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
+        endQuiz();
+    } else {
+        nextQuestion();
+    }
+
 }
 
-startBtn.addEventListener('click', function() {
+function endQuiz() {
+
+    quizQuestions.setAttribute('class', 'hide');
+    quizEndScreen.removeAttribute('class', 'hide');
+    clearInterval(countdown);
+}
+
+startBtn.addEventListener('click', function () {
     startQuiz();
 });
