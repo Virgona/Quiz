@@ -7,6 +7,10 @@ var answers = document.querySelector('#answers');
 var responses = document.querySelector('#response');
 var quizEndScreen = document.querySelector('#end-screen');
 var countdown;
+var userScore = 0;
+var scoreDisplay = document.querySelector('#score');
+var submitBtn = document.querySelector('#submit');
+var initials = document.querySelector('#initials');
 
 function startQuiz() {
     //initiates the quiz by hiding the starting elements
@@ -68,6 +72,7 @@ function selectingAnswer(event) {
 
     } else {
         responses.textContent = 'Correct!';
+        userScore++;
     }
 
     responses.setAttribute('class', 'responses');
@@ -90,8 +95,38 @@ function endQuiz() {
     quizQuestions.setAttribute('class', 'hide');
     quizEndScreen.removeAttribute('class', 'hide');
     clearInterval(countdown);
+    scoreDisplay.textContent = userScore;
+
 }
+
+// submitBtn.addEventListener('click', function (event) {
+//     event.preventDefault();
+function saveScore() {
+    var playerName = initials.value.trim();
+
+    var playerScore = JSON.parse(window.localStorage.getItem('highscores')) || [];
+
+    var newScore = {
+        score: userScore,
+        initials: playerName,
+    };
+
+    playerScore.push(newScore);
+    window.localStorage.setItem('highscores', JSON.stringify(playerScore));
+
+    window.location.href = 'highscores.html';
+}
+
+// var playerName = document.querySelector('#initials').value;
+// var playerScore = userScore;
+
+// localStorage.setItem('initials', playerName);
+// localStorage.setItem('score', playerScore);
+// console.log(responses.value);
+// });
 
 startBtn.addEventListener('click', function () {
     startQuiz();
 });
+
+submitBtn.addEventListener('click', saveScore);
