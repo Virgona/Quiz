@@ -6,15 +6,18 @@ var timer = document.querySelector('#time');
 var answers = document.querySelector('#answers');
 var responses = document.querySelector('#response');
 var quizEndScreen = document.querySelector('#end-screen');
+var countdown;
 
 function startQuiz() {
     //initiates the quiz by hiding the starting elements
     var initiateQuizFromBtn = document.getElementById('starting-point');
     initiateQuizFromBtn.setAttribute('class', 'hide');
+
     // reveals the previously hidden questions section of HTML
     quizQuestions.removeAttribute('class');
+
     // starts the timer
-    var countdown = setInterval(function () {
+    countdown = setInterval(function () {
         timeLeft--;
         timer.textContent = timeLeft;
     }, 1000);
@@ -48,7 +51,7 @@ function nextQuestion() {
 
 function selectingAnswer(event) {
 
-    var selectedAnswer = event.target.value;
+    var selectedAnswer = event.target;
 
 
     if (selectedAnswer.value !== questions[currentQuestionIndex].answer) {
@@ -56,6 +59,7 @@ function selectingAnswer(event) {
 
         if (timeLeft < 0) {
             timeLeft = 0;
+            endQuiz();
         }
 
         timer.textContent = timeLeft;
@@ -63,7 +67,7 @@ function selectingAnswer(event) {
         responses.textContent = 'incorrect!';
 
     } else {
-        responses.textContent = 'Correct!'
+        responses.textContent = 'Correct!';
     }
 
     responses.setAttribute('class', 'responses');
