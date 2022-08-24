@@ -54,13 +54,13 @@ function nextQuestion() {
 }
 
 function selectingAnswer(event) {
-
+    // applies an event target to the selected answer
     var selectedAnswer = event.target;
 
-
+    // checking if the answer clicked by the user is wrong and if it is wrong issuing the penalty
     if (selectedAnswer.value !== questions[currentQuestionIndex].answer) {
         timeLeft -= 15;
-
+        // making sure the timer doesnt go below 0 and if it reaches 0 the quiz ends
         if (timeLeft < 0) {
             timeLeft = 0;
             endQuiz();
@@ -74,12 +74,12 @@ function selectingAnswer(event) {
         responses.textContent = 'Correct!';
         userScore++;
     }
-
+    // brings up the affirmations at the bottom of the screen to tell the user if they chose correct or incorrect answers
     responses.setAttribute('class', 'responses');
     setTimeout(function () {
         responses.setAttribute('class', 'hide-response');
     }, 1000);
-
+    // moves the logic to the next question to pull through the next set of questions and answers
     currentQuestionIndex++;
 
     if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
@@ -89,41 +89,31 @@ function selectingAnswer(event) {
     }
 
 }
-
+// tells the logic what to do when the quiz comes to and end and that function is called
 function endQuiz() {
-
+    // hides the quiz content. shows the 
     quizQuestions.setAttribute('class', 'hide');
     quizEndScreen.removeAttribute('class', 'hide');
     clearInterval(countdown);
     scoreDisplay.textContent = userScore;
 
 }
-
-// submitBtn.addEventListener('click', function (event) {
-//     event.preventDefault();
 function saveScore() {
+    // makes sure that when the user enters their initials there is no dead space
     var playerName = initials.value.trim();
-
+    //puts the scores into the local stoage
     var playerScore = JSON.parse(window.localStorage.getItem('highscores')) || [];
-
+    // saves the user name and their score to an object
     var newScore = {
         score: userScore,
         initials: playerName,
     };
-
+    // combines the plays score and initials then turns them into a string to save into the local storage
     playerScore.push(newScore);
     window.localStorage.setItem('highscores', JSON.stringify(playerScore));
-
+    // moves the user to the high scores page
     window.location.href = 'highscores.html';
 }
-
-// var playerName = document.querySelector('#initials').value;
-// var playerScore = userScore;
-
-// localStorage.setItem('initials', playerName);
-// localStorage.setItem('score', playerScore);
-// console.log(responses.value);
-// });
 
 startBtn.addEventListener('click', function () {
     startQuiz();
