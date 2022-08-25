@@ -40,12 +40,27 @@ button:hover {
 
 .choice {
 
-    display: flex;
-    margin: auto;
-    align-items: flex-start;
-    justify-content: center;
-    display: block;
+    /* display: flex; */
+    /* margin: auto; */
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    /* display: block; */
 
+}
+
+#questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answers {
+    list-style: none;
+}
+
+#response {
+    text-align: center;
+    margin-top: 5px;
 }
 
 #questions-title {

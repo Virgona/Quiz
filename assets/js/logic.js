@@ -45,6 +45,7 @@ function nextQuestion() {
     // loops over the choices from the questions JS page and creates a button for every choice
     for (var i = 0; i < currentQuestion.choices.length; i++) {
         var answer = currentQuestion.choices[i];
+        var answerLi = document.createElement('li');
         var answerBtn = document.createElement('button');
         answerBtn.setAttribute('class', 'choice');
         answerBtn.setAttribute('value', answer);
@@ -52,7 +53,9 @@ function nextQuestion() {
 
         answerBtn.textContent = i + 1 + '. ' + answer;
         // adds the answer buttons to the variable which loads it to the page 
-        answers.appendChild(answerBtn);
+        answerLi.appendChild(answerBtn);
+        answers.appendChild(answerLi);
+
     }
 
 }
@@ -96,6 +99,7 @@ function selectingAnswer(event) {
 // tells the logic what to do when the quiz comes to and end and that function is called
 function endQuiz() {
     // hides the quiz content. shows the 
+    quizQuestions.removeAttribute('id', 'questions');
     quizQuestions.setAttribute('class', 'hide');
     quizEndScreen.removeAttribute('class', 'hide');
     clearInterval(countdown);
