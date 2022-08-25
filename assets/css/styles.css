@@ -1,35 +1,36 @@
-*{
+* {
     font-family: helvetica, sans-serif;
 }
 
-.scores a{
+.scores a {
     text-decoration: none;
 }
 
-.time{
-    position:relative;
+.time {
+    position: absolute;
     text-align: right;
-    bottom: 15px;
+    top: 13px;
+    right: 50px;
 }
 
-.start-screen{
+.start-screen {
     text-align: center;
 }
 
-button{
-    cursor:pointer;
+button {
+    cursor: pointer;
     font-size: 100%;
     background-color: rgb(106, 189, 238);
-    padding:5px 10px;
+    padding: 5px 10px;
     border: 0;
     transition: background-color 0.1s;
 }
 
-button:hover{
-    background-color: rgb(70, 136, 173) ;
+button:hover {
+    background-color: rgb(70, 136, 173);
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -37,22 +38,24 @@ button:hover{
     display: none;
 }
 
-.answers{
-  
+.choice {
+
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: flex-start;
     margin: auto;
+    align-items: flex-start;
+    justify-content: center;
+    display: block;
+
 }
 
-#questions-title{
-    text-align: center;
-}
-#end-screen{
+#questions-title {
     text-align: center;
 }
 
-#end-screen input{
+#end-screen {
+    text-align: center;
+}
+
+#end-screen input {
     margin-top: 10px;
 }
