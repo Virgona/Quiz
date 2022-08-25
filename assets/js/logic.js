@@ -1,4 +1,4 @@
-var timeLeft = questions.length * 15;
+var timeLeft = 75
 var currentQuestionIndex = 0;
 var startBtn = document.querySelector('#start-btn');
 var quizQuestions = document.querySelector('#questions');
@@ -22,8 +22,12 @@ function startQuiz() {
 
     // starts the timer
     countdown = setInterval(function () {
-        timeLeft--;
-        timer.textContent = timeLeft;
+        if (timeLeft > 0) {
+            timeLeft--;
+            timer.textContent = timeLeft;
+        } else {
+            endQuiz();
+        }
     }, 1000);
     // calling the function that will run the next part of the quiz. Which grabs the first question and displays on screen
     nextQuestion();
@@ -114,6 +118,7 @@ function saveScore() {
     // moves the user to the high scores page
     window.location.href = 'highscores.html';
 }
+
 
 startBtn.addEventListener('click', function () {
     startQuiz();
