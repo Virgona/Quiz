@@ -17,6 +17,14 @@ I ran into many issues with my Interval just not working and after utilizing ask
 
 I learnt so much during this challenge I am not sure where to begin. I think the biggest and most important thing I learned is that asking for help is okay and extremely important. I reached out to the askBCS team a fair few times, more than I thought I ever would and in doing so think I learnt a lot more about coding and about myself in the process
 
+## Usage
+
+1. user starts the quizz by clicking button
+2. user selects the relevent answer button and is taken to the next question. Repeat until quiz ends
+3, quiz ends by timeout if user selects to many wrong answers
+4. user at the end of quiz can go to the high scores page to see how to ranked on the leaderboard
+5. user can retake the quiz for a new score
+
 ## The App
 
 This link https://virgona.github.io/Quiz/ will take you to a webpage where you can partake in a coding quiz. You will be timed for 75 seconds and you will lose 15 seconds for each wrong answer you select. At the end of the quiz the user will be prompted to enter their initials and register their highscore!
